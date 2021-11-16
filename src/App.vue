@@ -1,8 +1,12 @@
 <script>
+import NewContactDialog from '@/components/NewContactDialog'
+
 export default {
+  components: { NewContactDialog },
   data: () => ({
     drawer: false,
     loading: false,
+    contactDialog: false,
   }),
   mounted() {
     this.$root.$on('loading', (value) => {
@@ -46,13 +50,9 @@ export default {
       </v-navigation-drawer>
 
       <v-btn
-          fab
-          color="green"
-          dark
-          bottom
-          right
-          fixed
-          large
+          fab color="green" dark bottom
+          right fixed large
+          @click="contactDialog = true"
       >
         <v-icon>mdi-plus</v-icon>
       </v-btn>
@@ -61,6 +61,8 @@ export default {
     <v-main>
       <router-view />
     </v-main>
+
+    <new-contact-dialog :open="contactDialog" @close="contactDialog = false" />
 
     <v-dialog persistent :value="loading">
       <v-card :loading="true">

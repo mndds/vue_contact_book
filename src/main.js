@@ -10,13 +10,15 @@ Vue.config.productionTip = false
 auth.onAuthStateChanged(user => {
     store.state.auth.user = user
 
-    if (user && router.currentRoute.name.startsWith('auth.')) {
-        router.push({name: 'dashboard'})
-    }
+    router.onReady(() => {
+        if (user && router.currentRoute.name.startsWith('auth.')) {
+            router.push({name: 'dashboard'})
+        }
 
-    if (!user && !router.currentRoute.name.startsWith('auth.')) {
-        router.push({name: 'auth.login'})
-    }
+        if (!user && !router.currentRoute.name.startsWith('auth.')) {
+            router.push({name: 'auth.login'})
+        }
+    })
 
 })
 

@@ -1,5 +1,4 @@
 import Dashboard from '@/views/Dashboard'
-import ContactList from '@/views/ContactList'
 import Login from '@/views/Auth/Login'
 import Register from '@/views/Auth/Register'
 
@@ -12,7 +11,7 @@ export default [
     {
         path: '/contacts',
         name: 'contacts.list',
-        component: ContactList,
+        component: () => import('@/views/ContactList'), // Lazy loading
     },
     {
         path: '/auth/login',
