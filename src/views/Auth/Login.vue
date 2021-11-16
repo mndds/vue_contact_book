@@ -1,5 +1,5 @@
 <script>
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import {signInWithEmailAndPassword} from 'firebase/auth'
 import auth from '@/plugins/firebase/auth'
 
 export default {
@@ -12,13 +12,11 @@ export default {
   }),
   methods: {
     login() {
+      this.$root.$emit('loading', true)
+
       signInWithEmailAndPassword(auth, this.form.email, this.form.password)
-          .then(data => {
-            console.log(data)
-          })
-          .catch(error => {
-            console.log(error.message)
-            this.error = error
+          .finally(() => {
+            this.$root.$emit('loading', false)
           })
     }
   }
@@ -26,7 +24,7 @@ export default {
 </script>
 
 <template>
-  <div>
+  <v-container>
     <h1>Login</h1>
 
     <v-text-field label="Email" v-model="form.email"/>
@@ -37,5 +35,9 @@ export default {
       Войти
     </v-btn>
 
-  </div>
+    <v-btn :to="{name: 'auth.register'}" text color="secondary" class="ml-3">
+      Нет аккаунта?
+    </v-btn>
+
+  </v-container>
 </template>

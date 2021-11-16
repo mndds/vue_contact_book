@@ -1,6 +1,7 @@
 import Dashboard from '@/views/Dashboard'
 import ContactList from '@/views/ContactList'
 import Login from '@/views/Auth/Login'
+import Register from '@/views/Auth/Register'
 
 export default [
     {
@@ -17,5 +18,10 @@ export default [
         path: '/auth/login',
         name: 'auth.login',
         component: Login
+    },
+    {
+        path: '/auth/register',
+        name: 'auth.register',
+        component: Register,
     }
 ]

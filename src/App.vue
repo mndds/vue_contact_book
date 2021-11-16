@@ -2,7 +2,13 @@
 export default {
   data: () => ({
     drawer: false,
+    loading: false,
   }),
+  mounted() {
+    this.$root.$on('loading', (value) => {
+      this.loading = value
+    })
+  }
 }
 </script>
 
@@ -55,6 +61,17 @@ export default {
     <v-main>
       <router-view />
     </v-main>
+
+    <v-dialog persistent :value="loading">
+      <v-card :loading="true">
+        <v-card-title>
+          Загрузка.
+        </v-card-title>
+        <v-card-text>
+          Пожалуйста подождите.
+        </v-card-text>
+      </v-card>
+    </v-dialog>
 
   </v-app>
 </template>
