@@ -1,12 +1,12 @@
 import { initializeApp } from 'firebase/app'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAle0qohP3JalhWmu4Fc4EZNbXby48q_28",
-    authDomain: "itstep-contact-book.firebaseapp.com",
-    projectId: "itstep-contact-book",
-    messagingSenderId: "758182291646",
-    appId: "1:758182291646:web:eefd11bff4c0fb0f0616ef",
-    storageBucket: "itstep-contact-book.appspot.com",
-}
+    apiKey: "AIzaSyCQqQlawOJBRKSBCaJpH9-5pdNPJm9yYRk",
+    authDomain: "mnds-contact-book.firebaseapp.com",
+    projectId: "mnds-contact-book",
+    storageBucket: "mnds-contact-book.appspot.com",
+    messagingSenderId: "455976664399",
+    appId: "1:455976664399:web:7b226cbff35e59415ad93a"
+  };
 
 export default initializeApp(firebaseConfig)
