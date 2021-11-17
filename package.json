@@ -48,5 +48,17 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "description": "```\r npm install\r ```",
+  "main": "babel.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/infureal/vue_contact_book.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/infureal/vue_contact_book/issues"
+  },
+  "homepage": "https://github.com/infureal/vue_contact_book#readme"
 }
