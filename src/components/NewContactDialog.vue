@@ -9,7 +9,8 @@ export default {
     loading: false,
     form: {
       name: '',
-      phone: ''
+      phone: '',
+      email: ''
     }
   }),
   methods: {
@@ -25,6 +26,7 @@ export default {
       const ref = doc(database, `users/${id}/contacts`, encode(this.form.name + Date.now()))
       setDoc(ref, this.form)
           .then(() => {
+            this.$root.$emit('contacts:created')
             this.$emit('close')
           })
           .finally(() => this.loading = false)
@@ -45,6 +47,7 @@ export default {
 
         <v-text-field v-model="form.name" label="Имя"/>
         <v-text-field v-model="form.phone" label="Телефон"/>
+        <v-text-field v-model="form.email" label="Email"/>
 
         <v-btn :disabled="loading" @click="create">
           Добавить контакт

@@ -6,9 +6,26 @@ export default {
   data: () => ({
     contacts: null,
     loading: false,
+    search: '',
+    headers: [
+      {
+        text: 'Имя',
+        value: 'name',
+      },
+      {
+        text: 'Телефон',
+        value: 'phone'
+      },
+      {
+        text: 'Email',
+        value: 'email',
+      }
+    ]
   }),
   mounted() {
     this.load()
+
+    this.$root.$on('contacts:created', this.load)
   },
   computed: {
     userId() {
@@ -23,6 +40,14 @@ export default {
     collection() {
       const path = `users/${this.userId}/contacts`
       return collection(database, path)
+    },
+    normalized() {
+
+      if (!this.contacts) {
+        return null
+      }
+
+      return this.contacts.map(c => c.data())
     }
   },
   methods: {
@@ -42,6 +67,14 @@ export default {
         this.loading = false
       })
 
+    },
+    filterItems(value, search) {
+
+      if (!value || !search) {
+        return null
+      }
+
+      return value.toString().toLowerCase().indexOf(search.toString().toLowerCase()) !== -1
     }
   }
 }
@@ -52,11 +85,18 @@ export default {
 
   <h1>Контакты</h1>
 
-  <ul>
-    <li v-for="(contact, index) in this.contacts" :key="index">
-      {{ contact.data }}
-    </li>
-  </ul>
+  <v-data-table
+      :custom-filter="filterItems"
+      :search="search"
+      :loading="loading"
+      :headers="headers"
+      :items="normalized || []"
+  >
+    <template #top>
+      <v-text-field v-model="search" label="Поиск" />
+    </template>
+
+  </v-data-table>
 
 </v-container>
 </template>
