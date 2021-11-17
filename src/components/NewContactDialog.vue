@@ -25,6 +25,7 @@ export default {
       const ref = doc(database, `users/${id}/contacts`, encode(this.form.name + Date.now()))
       setDoc(ref, this.form)
           .then(() => {
+            this.$root.$emit('contacts:created')
             this.$emit('close')
           })
           .finally(() => this.loading = false)
