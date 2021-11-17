@@ -15,6 +15,10 @@ export default {
       {
         text: 'Телефон',
         value: 'phone'
+      },
+      {
+        text: 'Email',
+        value: 'email',
       }
     ]
   }),
@@ -58,7 +62,6 @@ export default {
 
       getDocs(q).then(res => {
         this.contacts = res.docs
-        console.log(this.contacts)
       })
       .finally(() => {
         this.loading = false
@@ -66,6 +69,11 @@ export default {
 
     },
     filterItems(value, search) {
+
+      if (!value || !search) {
+        return null
+      }
+
       return value.toString().toLowerCase().indexOf(search.toString().toLowerCase()) !== -1
     }
   }

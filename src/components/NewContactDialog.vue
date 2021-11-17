@@ -9,7 +9,8 @@ export default {
     loading: false,
     form: {
       name: '',
-      phone: ''
+      phone: '',
+      email: ''
     }
   }),
   methods: {
@@ -46,6 +47,7 @@ export default {
 
         <v-text-field v-model="form.name" label="Имя"/>
         <v-text-field v-model="form.phone" label="Телефон"/>
+        <v-text-field v-model="form.email" label="Email"/>
 
         <v-btn :disabled="loading" @click="create">
           Добавить контакт
